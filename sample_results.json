@@ -1,0 +1,15 @@
+{
+  "regulation": "HIPAA Privacy Rule",
+  "entities": [
+    {
+      "name": "Social Security Number",
+      "covered": true,
+      "source": "Example citation"
+    },
+    {
+      "name": "Medical Record Number",
+      "covered": false,
+      "source": "Example citation"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "law": "HIPAA Privacy Rule",
+  "section": "45 CFR 164.514(b)(2)(i)",
+  "sensitive_entities": [
+    "Social Security numbers",
+    "Medical record numbers",
+    "Health plan beneficiary numbers",
+    "Account numbers",
+    "Biometric identifiers",
+    "Internet Protocol (IP) address numbers"
+  ]
+}

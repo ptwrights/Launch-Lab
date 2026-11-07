@@ -1,0 +1,11 @@
+
+{
+  "detectors": [
+    "Social Security Number",
+    "Email Address",
+    "Telephone Number",
+    "IP Address",
+    "Account Number",
+    "Names"
+  ]
+}

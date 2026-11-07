@@ -1,0 +1,312 @@
+[
+    {
+        "entity": "Names",
+        "subcategories": [
+            "Names"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(A)",
+        "detector": "Names",
+        "covered": true,
+        "status": "Covered",
+        "source_text": null,
+        "page": null,
+        "source_excerpt": null
+    },
+    {
+        "entity": "Geographic Subdivisions",
+        "subcategories": [
+            "Geographic subdivisions",
+            "Street address",
+            "City",
+            "County",
+            "Precinct",
+            "Zip code",
+            "Geocodes",
+            "Initial three digits of a zip code"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(B)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": 98,
+        "source_excerpt": "other \nthan town or city, State, and zip \ncode; \n(iii) Telephone numbers; \n(iv) Fax numbers; \n(v) Electronic mail addresses; \n(vi) Social security numbers; \n(vii) Medical record numbers; \n(viii) Health plan beneficiary \nnumbers; \n(ix) Account numbers; \n(x) Certificate/license numbers; \n(xi) Vehicle identifiers and serial \nnumbers, including license plate \nnumbers; \n(xii) Device identifiers and se",
+        "suggested_rule": {
+            "method": "Manual review",
+            "pattern": null,
+            "notes": "No candidate rule available yet."
+        }
+    },
+    {
+        "entity": "Dates",
+        "subcategories": [
+            "Dates",
+            "Birth date",
+            "Admission date",
+            "Discharge date",
+            "Date of death",
+            "Age"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(C)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "suggested_rule": {
+            "method": "Manual review",
+            "pattern": null,
+            "notes": "No candidate rule available yet."
+        }
+    },
+    {
+        "entity": "Telephone Number",
+        "subcategories": [
+            "Telephone numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(D)",
+        "detector": "Telephone Number",
+        "covered": true,
+        "status": "Covered",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr"
+    },
+    {
+        "entity": "Fax Number",
+        "subcategories": [
+            "Fax numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(E)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "suggested_rule": {
+            "method": "Manual review",
+            "pattern": null,
+            "notes": "No candidate rule available yet."
+        }
+    },
+    {
+        "entity": "Email Address",
+        "subcategories": [
+            "Electronic mail addresses"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(F)",
+        "detector": "Email Address",
+        "covered": true,
+        "status": "Covered",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr"
+    },
+    {
+        "entity": "Social Security Number",
+        "subcategories": [
+            "Social security numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(G)",
+        "detector": "Social Security Number",
+        "covered": true,
+        "status": "Covered",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr"
+    },
+    {
+        "entity": "Medical Record Number",
+        "subcategories": [
+            "Medical record numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(H)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "suggested_rule": {
+            "method": "Regex + validation",
+            "pattern": "\\bMRN[-:\\s]?\\d{5,10}\\b",
+            "notes": "Example format only. Actual MRN formats vary."
+        }
+    },
+    {
+        "entity": "Health Plan Beneficiary Number",
+        "subcategories": [
+            "Health plan beneficiary numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(I)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "suggested_rule": {
+            "method": "Regex + validation",
+            "pattern": "\\b[A-Z]{2}\\d{8}\\b",
+            "notes": "Illustrative pattern; requires plan-specific validation."
+        }
+    },
+    {
+        "entity": "Account Number",
+        "subcategories": [
+            "Account numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(J)",
+        "detector": "Account Number",
+        "covered": true,
+        "status": "Covered",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr"
+    },
+    {
+        "entity": "Certificate/License Number",
+        "subcategories": [
+            "Certificate/license numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(K)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "suggested_rule": {
+            "method": "Dictionary + regex",
+            "pattern": null,
+            "notes": "Requires jurisdiction-specific formats."
+        }
+    },
+    {
+        "entity": "Vehicle Identifiers",
+        "subcategories": [
+            "Vehicle identifiers",
+            "Serial numbers",
+            "License plate numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(L)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "suggested_rule": {
+            "method": "Manual review",
+            "pattern": null,
+            "notes": "No candidate rule available yet."
+        }
+    },
+    {
+        "entity": "Device Identifiers",
+        "subcategories": [
+            "Device identifiers",
+            "Serial numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(M)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "suggested_rule": {
+            "method": "Manual review",
+            "pattern": null,
+            "notes": "No candidate rule available yet."
+        }
+    },
+    {
+        "entity": "Web URLs",
+        "subcategories": [
+            "Web Universal Resource Locators (URLs)"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(N)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": null,
+        "source_excerpt": null,
+        "suggested_rule": {
+            "method": "Manual review",
+            "pattern": null,
+            "notes": "No candidate rule available yet."
+        }
+    },
+    {
+        "entity": "IP Address",
+        "subcategories": [
+            "Internet Protocol (IP) address numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(O)",
+        "detector": "IP Address",
+        "covered": true,
+        "status": "Covered",
+        "source_text": null,
+        "page": null,
+        "source_excerpt": null
+    },
+    {
+        "entity": "Biometric Identifiers",
+        "subcategories": [
+            "Biometric identifiers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(P)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "suggested_rule": {
+            "method": "Specialized biometric detection",
+            "pattern": null,
+            "notes": "Requires specialized processing beyond text regex."
+        }
+    },
+    {
+        "entity": "Full-Face Photographs",
+        "subcategories": [
+            "Full face photographic images",
+            "Comparable images"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(Q)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": 97,
+        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "suggested_rule": {
+            "method": "Image recognition",
+            "pattern": null,
+            "notes": "Requires image-based detection."
+        }
+    },
+    {
+        "entity": "Other Unique Identifiers",
+        "subcategories": [
+            "Unique identifying numbers"
+        ],
+        "regulatory_reference": "45 CFR 164.514(b)(2)(i)(R)",
+        "detector": null,
+        "covered": false,
+        "status": "Gap",
+        "source_text": null,
+        "page": null,
+        "source_excerpt": null,
+        "suggested_rule": {
+            "method": "Manual review",
+            "pattern": null,
+            "notes": "No candidate rule available yet."
+        }
+    }
+]

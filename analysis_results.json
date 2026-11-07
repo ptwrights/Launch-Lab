@@ -1,0 +1,175 @@
+{
+    "regulation": "HIPAA",
+    "entities": [
+        {
+            "name": "Names",
+            "source_text": "(A)",
+            "page": null
+        },
+        {
+            "name": "Geographic subdivisions",
+            "source_text": "(B)",
+            "page": null
+        },
+        {
+            "name": "Street address",
+            "source_text": "(B)",
+            "page": null
+        },
+        {
+            "name": "City",
+            "source_text": "(B)",
+            "page": null
+        },
+        {
+            "name": "County",
+            "source_text": "(B)",
+            "page": null
+        },
+        {
+            "name": "Precinct",
+            "source_text": "(B)",
+            "page": null
+        },
+        {
+            "name": "Zip code",
+            "source_text": "(B)",
+            "page": null
+        },
+        {
+            "name": "Geocodes",
+            "source_text": "(B)",
+            "page": null
+        },
+        {
+            "name": "Initial three digits of a zip code",
+            "source_text": "(B)",
+            "page": null
+        },
+        {
+            "name": "Dates",
+            "source_text": "(C)",
+            "page": null
+        },
+        {
+            "name": "Birth date",
+            "source_text": "(C)",
+            "page": null
+        },
+        {
+            "name": "Admission date",
+            "source_text": "(C)",
+            "page": null
+        },
+        {
+            "name": "Discharge date",
+            "source_text": "(C)",
+            "page": null
+        },
+        {
+            "name": "Date of death",
+            "source_text": "(C)",
+            "page": null
+        },
+        {
+            "name": "Age",
+            "source_text": "(C)",
+            "page": null
+        },
+        {
+            "name": "Telephone numbers",
+            "source_text": "(D)",
+            "page": null
+        },
+        {
+            "name": "Fax numbers",
+            "source_text": "(E)",
+            "page": null
+        },
+        {
+            "name": "Electronic mail addresses",
+            "source_text": "(F)",
+            "page": null
+        },
+        {
+            "name": "Social security numbers",
+            "source_text": "(G)",
+            "page": null
+        },
+        {
+            "name": "Medical record numbers",
+            "source_text": "(H)",
+            "page": null
+        },
+        {
+            "name": "Health plan beneficiary numbers",
+            "source_text": "(I)",
+            "page": null
+        },
+        {
+            "name": "Account numbers",
+            "source_text": "(J)",
+            "page": null
+        },
+        {
+            "name": "Certificate/license numbers",
+            "source_text": "(K)",
+            "page": null
+        },
+        {
+            "name": "Vehicle identifiers",
+            "source_text": "(L)",
+            "page": null
+        },
+        {
+            "name": "Serial numbers",
+            "source_text": "(L)",
+            "page": null
+        },
+        {
+            "name": "License plate numbers",
+            "source_text": "(L)",
+            "page": null
+        },
+        {
+            "name": "Device identifiers",
+            "source_text": "(M)",
+            "page": null
+        },
+        {
+            "name": "Serial numbers",
+            "source_text": "(M)",
+            "page": null
+        },
+        {
+            "name": "Web Universal Resource Locators (URLs)",
+            "source_text": "(N)",
+            "page": null
+        },
+        {
+            "name": "Internet Protocol (IP) address numbers",
+            "source_text": "(O)",
+            "page": null
+        },
+        {
+            "name": "Biometric identifiers",
+            "source_text": "(P)",
+            "page": null
+        },
+        {
+            "name": "Full face photographic images",
+            "source_text": "(Q)",
+            "page": null
+        },
+        {
+            "name": "Comparable images",
+            "source_text": "(Q)",
+            "page": null
+        },
+        {
+            "name": "Unique identifying numbers",
+            "source_text": "(R)",
+            "page": null
+        }
+    ]
+}
