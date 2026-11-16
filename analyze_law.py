@@ -1,98 +1,105 @@
 
 import ollama
 import json
+from pathlib import Path
 
-# Open the HIPAA text file
-with open("data/law_text.txt", "r", encoding="utf-8") as file:
-    law_text = file.read()
+BASE_DIR = Path(__file__).resolve().parent
 
-# Find the HIPAA section listing sensitive identifiers
-search_text = "Social security numbers;"
 
-position = law_text.lower().find(search_text.lower())
+def analyze_hipaa():
+    # Open the HIPAA text file
+    file_path = BASE_DIR / "data" / "law_text.txt"
 
-if position == -1:
-    print("Could not find the HIPAA identifier list.")
-    exit()
+    with open(file_path, "r", encoding="utf-8") as file:
+        law_text = file.read()
 
-# Extract text around the identifier list
-start = max(0, position - 1500)
-end = min(len(law_text), position + 1500)
+    # Find the HIPAA section listing identifiers
+    search_text = "Social security numbers;"
+    position = law_text.lower().find(search_text.lower())
 
-law_section = law_text[start:end]
+    if position == -1:
+        raise ValueError("Could not find the HIPAA identifier list.")
 
-print("HIPAA section found!")
-print("Analyzing with Ollama...")
+    # Extract the relevant section
+    start = max(0, position - 1500)
+    end = min(len(law_text), position + 1500)
 
-# Ask Ollama to identify sensitive information
-response = ollama.chat(
-    model="llama3.2:3b",
-    format="json",
-    options={"temperature": 0},
-    messages=[
-        {
-            "role": "system",
-            "content": (
-                "You are analyzing the HIPAA Privacy Rule. "
-                "Identify only personal identifiers explicitly "
-                "listed in the provided legal text. "
-                "Do not include publication or compliance dates. "
-                "Return ONLY valid JSON in this format: "
-                '{"entities": [{"name": "identifier name", '
-                '"source_text": "exact supporting phrase"}]}. '
-                "Copy supporting phrases exactly from the text. "
-                "Do not invent information."
-            )
-        },
-        {
-            "role": "user",
-            "content": f"Analyze this legal text:\n\n{law_section}"
-        }
-    ]
-)
+    law_section = law_text[start:end]
 
-# Convert the AI response to Python data
-try:
-    results = json.loads(response["message"]["content"])
-except json.JSONDecodeError:
-    print("Error: Ollama did not return valid JSON.")
-    exit()
+    print("Analyzing HIPAA with Ollama...")
 
-# Verify that supporting phrases appear in the text
-verified_entities = []
+    # Ask Ollama to identify sensitive information
+    response = ollama.chat(
+        model="llama3.2:3b",
+        format="json",
+        options={"temperature": 0},
+        messages=[
+            {
+                "role": "system",
+                "content": (
+                    "You are analyzing the HIPAA Privacy Rule. "
+                    "Identify only personal identifiers explicitly "
+                    "listed in the provided legal text. "
+                    "Do not include publication or compliance dates. "
+                    "Return ONLY valid JSON in this format: "
+                    '{"entities": [{"name": "identifier name", '
+                    '"source_text": "exact supporting phrase"}]}. '
+                    "Copy supporting phrases exactly from the text. "
+                    "Do not invent information."
+                )
+            },
+            {
+                "role": "user",
+                "content": f"Analyze this legal text:\n\n{law_section}"
+            }
+        ]
+    )
 
-for entity in results.get("entities", []):
-    name = entity.get("name", "")
-    source_text = entity.get("source_text", "")
+    # Convert the AI response to Python data
+    try:
+        results = json.loads(response["message"]["content"])
+    except json.JSONDecodeError:
+        raise ValueError("Ollama did not return valid JSON.")
 
-    if not isinstance(name, str) or not isinstance(source_text, str):
-        continue
+    # Verify supporting phrases
+    verified_entities = []
 
-    if name and source_text and source_text.lower() in law_section.lower():
-        verified_entities.append({
-            "name": name,
-            "source_text": source_text,
-            "page": None
-        })
+    for entity in results.get("entities", []):
+        name = entity.get("name", "")
+        source_text = entity.get("source_text", "")
 
-# Organize the final results
-output = {
-    "regulation": "HIPAA",
-    "entities": verified_entities
-}
+        if not isinstance(name, str) or not isinstance(source_text, str):
+            continue
 
-# Save results to a JSON file
-with open("analysis_results.json", "w") as file:
-    json.dump(output, file, indent=4)
+        if name and source_text and source_text.lower() in law_section.lower():
+            verified_entities.append({
+                "name": name,
+                "source_text": source_text,
+                "page": None
+            })
 
-print("\nAnalysis saved to analysis_results.json")
-print("Verified entities:", len(verified_entities))
+    output = {
+        "regulation": "HIPAA",
+        "entities": verified_entities
+    }
 
-# Display the extracted identifiers
-print("\nExtracted HIPAA Identifiers:")
+    # Save results
+    with open(BASE_DIR / "analysis_results.json", "w") as file:
+        json.dump(output, file, indent=4)
 
-for entity in verified_entities:
-    print("-", entity["name"])
+    return output
+
+
+# Still allows the file to run independently
+if __name__ == "__main__":
+    results = analyze_hipaa()
+
+    print("\nAnalysis saved to analysis_results.json")
+    print("Verified entities:", len(results["entities"]))
+
+    for entity in results["entities"]:
+        print("-", entity["name"])
+
 
 
 

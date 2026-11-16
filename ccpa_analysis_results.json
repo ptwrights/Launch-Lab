@@ -1,0 +1,77 @@
+{
+    "regulation": "CCPA",
+    "document": "California Consumer Privacy Act Regulations",
+    "method": "Hybrid RAG (BM25 + FAISS)",
+    "entities": [
+        {
+            "name": "(1)(A) Government Identifiers",
+            "source_text": "A consumer\u2019s social security",
+            "page": 10,
+            "chunk_id": 35,
+            "regulatory_reference": "11 CCR \u00a7 7001(bbb)(1)(A)"
+        },
+        {
+            "name": "(1)(B) Financial Accounts and Credentials",
+            "source_text": "A consumer\u2019s account log-in",
+            "page": 11,
+            "chunk_id": 36,
+            "regulatory_reference": "11 CCR \u00a7 7001(bbb)(1)(B)"
+        },
+        {
+            "name": "(1)(C) Precise Geolocation",
+            "source_text": "A consumer\u2019s precise geolocation",
+            "page": 11,
+            "chunk_id": 36,
+            "regulatory_reference": "11 CCR \u00a7 7001(bbb)(1)(C)"
+        },
+        {
+            "name": "(1)(D) Sensitive Personal Characteristics",
+            "source_text": "A consumer\u2019s racial or ethnic origin",
+            "page": 11,
+            "chunk_id": 36,
+            "regulatory_reference": "11 CCR \u00a7 7001(bbb)(1)(D)"
+        },
+        {
+            "name": "(1)(E) Private Communications",
+            "source_text": "The contents of a consumer\u2019s mail",
+            "page": 11,
+            "chunk_id": 36,
+            "regulatory_reference": "11 CCR \u00a7 7001(bbb)(1)(E)"
+        },
+        {
+            "name": "(1)(F) Genetic Data",
+            "source_text": "A consumer\u2019s genetic data",
+            "page": 11,
+            "chunk_id": 36,
+            "regulatory_reference": "11 CCR \u00a7 7001(bbb)(1)(F)"
+        },
+        {
+            "name": "(1)(G) Neural Data",
+            "source_text": "A consumer\u2019s neural data",
+            "page": 11,
+            "chunk_id": 36,
+            "regulatory_reference": "11 CCR \u00a7 7001(bbb)(1)(G)"
+        },
+        {
+            "name": "(2) Biometric Identification",
+            "source_text": "The processing of biometric information",
+            "page": 11,
+            "chunk_id": 36,
+            "regulatory_reference": "11 CCR \u00a7 7001(bbb)(2)"
+        },
+        {
+            "name": "(3) Health and Sexual Information",
+            "source_text": "Personal information collected and analyzed concerning a consumer\u2019s health",
+            "page": 11,
+            "chunk_id": 36,
+            "regulatory_reference": "11 CCR \u00a7 7001(bbb)(3)"
+        },
+        {
+            "name": "(4) Personal Information of Minors",
+            "source_text": "Personal information of consumers that the business has actual knowledge",
+            "page": 11,
+            "chunk_id": 37,
+            "regulatory_reference": "11 CCR \u00a7 7001(bbb)(4)"
+        }
+    ]
+}

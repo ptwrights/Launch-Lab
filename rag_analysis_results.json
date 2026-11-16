@@ -1,0 +1,114 @@
+{
+    "regulation": "HIPAA",
+    "method": "Hybrid RAG (BM25 + FAISS)",
+    "entities": [
+        {
+            "name": "(A) Names",
+            "source_text": "Names",
+            "page": 97,
+            "chunk_id": 467
+        },
+        {
+            "name": "(B) All geographic subdivisions",
+            "source_text": "All geographic subdivisions smaller than a State, including street address, city, county, precinct, zip code, and their equivalent geocodes, except for the initial three digits of a zip code",
+            "page": 97,
+            "chunk_id": 467
+        },
+        {
+            "name": "(C) All elements of dates",
+            "source_text": "All elements of dates (except year) for dates directly related to an individual, including birth date, admission date, discharge date, date of death; and all ages over 89 and all elements of dates (including year) indicative of such age",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(D) Telephone numbers",
+            "source_text": "Telephone numbers",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(E) Fax numbers",
+            "source_text": "Fax numbers",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(F) Electronic mail addresses",
+            "source_text": "Electronic mail addresses",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(G) Social security numbers",
+            "source_text": "Social security numbers",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(H) Medical record numbers",
+            "source_text": "Medical record numbers",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(I) Health plan beneficiary numbers",
+            "source_text": "Health plan beneficiary numbers",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(J) Account numbers",
+            "source_text": "Account numbers",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(K) Certificate/license numbers",
+            "source_text": "Certificate/license numbers",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(L) Vehicle identifiers",
+            "source_text": "Vehicle identifiers and serial numbers, including license plate numbers",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(M) Device identifiers",
+            "source_text": "Device identifiers and serial numbers",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(N) Web Universal Resource Locators",
+            "source_text": "Web Universal Resource Locators (URLs)",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(O) Internet Protocol",
+            "source_text": "Internet Protocol (IP) address numbers",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(P) Biometric identifiers",
+            "source_text": "Biometric identifiers, including finger and voice prints",
+            "page": 97,
+            "chunk_id": 468
+        },
+        {
+            "name": "(Q) Full face photographic images",
+            "source_text": "Full face photographic images and any comparable images",
+            "page": 97,
+            "chunk_id": 469
+        },
+        {
+            "name": "(R) Any other unique identifying number",
+            "source_text": "Any other unique identifying number, characteristic, or code, except as permitted by paragraph (c) of this section",
+            "page": 97,
+            "chunk_id": 469
+        }
+    ]
+}

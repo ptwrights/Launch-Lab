@@ -1,5 +1,6 @@
 [
     {
+        "regulation": "HIPAA",
         "entity": "Names",
         "subcategories": [
             "Names"
@@ -8,11 +9,12 @@
         "detector": "Names",
         "covered": true,
         "status": "Covered",
-        "source_text": null,
-        "page": null,
-        "source_excerpt": null
+        "source_text": "Names",
+        "page": 97,
+        "source_excerpt": "Names"
     },
     {
+        "regulation": "HIPAA",
         "entity": "Geographic Subdivisions",
         "subcategories": [
             "Geographic subdivisions",
@@ -28,9 +30,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
-        "page": 98,
-        "source_excerpt": "other \nthan town or city, State, and zip \ncode; \n(iii) Telephone numbers; \n(iv) Fax numbers; \n(v) Electronic mail addresses; \n(vi) Social security numbers; \n(vii) Medical record numbers; \n(viii) Health plan beneficiary \nnumbers; \n(ix) Account numbers; \n(x) Certificate/license numbers; \n(xi) Vehicle identifiers and serial \nnumbers, including license plate \nnumbers; \n(xii) Device identifiers and se",
+        "source_text": "All geographic subdivisions smaller than a State, including street address, city, county, precinct, zip code, and their equivalent geocodes, except for the initial three digits of a zip code",
+        "page": 97,
+        "source_excerpt": "All geographic subdivisions smaller than a State, including street address, city, county, precinct, zip code, and their equivalent geocodes, except for the initial three digits of a zip code",
         "suggested_rule": {
             "method": "Manual review",
             "pattern": null,
@@ -38,6 +40,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "Dates",
         "subcategories": [
             "Dates",
@@ -51,9 +54,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
+        "source_text": "All elements of dates (except year) for dates directly related to an individual, including birth date, admission date, discharge date, date of death; and all ages over 89 and all elements of dates (including year) indicative of such age",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "source_excerpt": "All elements of dates (except year) for dates directly related to an individual, including birth date, admission date, discharge date, date of death; and all ages over 89 and all elements of dates (including year) indicative of such age",
         "suggested_rule": {
             "method": "Manual review",
             "pattern": null,
@@ -61,6 +64,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "Telephone Number",
         "subcategories": [
             "Telephone numbers"
@@ -69,11 +73,12 @@
         "detector": "Telephone Number",
         "covered": true,
         "status": "Covered",
-        "source_text": null,
+        "source_text": "Telephone numbers",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr"
+        "source_excerpt": "Telephone numbers"
     },
     {
+        "regulation": "HIPAA",
         "entity": "Fax Number",
         "subcategories": [
             "Fax numbers"
@@ -82,9 +87,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
+        "source_text": "Fax numbers",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "source_excerpt": "Fax numbers",
         "suggested_rule": {
             "method": "Manual review",
             "pattern": null,
@@ -92,6 +97,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "Email Address",
         "subcategories": [
             "Electronic mail addresses"
@@ -100,11 +106,12 @@
         "detector": "Email Address",
         "covered": true,
         "status": "Covered",
-        "source_text": null,
+        "source_text": "Electronic mail addresses",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr"
+        "source_excerpt": "Electronic mail addresses"
     },
     {
+        "regulation": "HIPAA",
         "entity": "Social Security Number",
         "subcategories": [
             "Social security numbers"
@@ -113,11 +120,12 @@
         "detector": "Social Security Number",
         "covered": true,
         "status": "Covered",
-        "source_text": null,
+        "source_text": "Social security numbers",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr"
+        "source_excerpt": "Social security numbers"
     },
     {
+        "regulation": "HIPAA",
         "entity": "Medical Record Number",
         "subcategories": [
             "Medical record numbers"
@@ -126,9 +134,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
+        "source_text": "Medical record numbers",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "source_excerpt": "Medical record numbers",
         "suggested_rule": {
             "method": "Regex + validation",
             "pattern": "\\bMRN[-:\\s]?\\d{5,10}\\b",
@@ -136,6 +144,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "Health Plan Beneficiary Number",
         "subcategories": [
             "Health plan beneficiary numbers"
@@ -144,9 +153,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
+        "source_text": "Health plan beneficiary numbers",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "source_excerpt": "Health plan beneficiary numbers",
         "suggested_rule": {
             "method": "Regex + validation",
             "pattern": "\\b[A-Z]{2}\\d{8}\\b",
@@ -154,6 +163,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "Account Number",
         "subcategories": [
             "Account numbers"
@@ -162,11 +172,12 @@
         "detector": "Account Number",
         "covered": true,
         "status": "Covered",
-        "source_text": null,
+        "source_text": "Account numbers",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr"
+        "source_excerpt": "Account numbers"
     },
     {
+        "regulation": "HIPAA",
         "entity": "Certificate/License Number",
         "subcategories": [
             "Certificate/license numbers"
@@ -175,9 +186,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
+        "source_text": "Certificate/license numbers",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "source_excerpt": "Certificate/license numbers",
         "suggested_rule": {
             "method": "Dictionary + regex",
             "pattern": null,
@@ -185,6 +196,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "Vehicle Identifiers",
         "subcategories": [
             "Vehicle identifiers",
@@ -195,9 +207,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
+        "source_text": "Vehicle identifiers and serial numbers, including license plate numbers",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "source_excerpt": "Vehicle identifiers and serial numbers, including license plate numbers",
         "suggested_rule": {
             "method": "Manual review",
             "pattern": null,
@@ -205,6 +217,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "Device Identifiers",
         "subcategories": [
             "Device identifiers",
@@ -214,9 +227,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
+        "source_text": "Device identifiers and serial numbers",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "source_excerpt": "Device identifiers and serial numbers",
         "suggested_rule": {
             "method": "Manual review",
             "pattern": null,
@@ -224,6 +237,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "Web URLs",
         "subcategories": [
             "Web Universal Resource Locators (URLs)"
@@ -232,9 +246,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
-        "page": null,
-        "source_excerpt": null,
+        "source_text": "Web Universal Resource Locators (URLs)",
+        "page": 97,
+        "source_excerpt": "Web Universal Resource Locators (URLs)",
         "suggested_rule": {
             "method": "Manual review",
             "pattern": null,
@@ -242,6 +256,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "IP Address",
         "subcategories": [
             "Internet Protocol (IP) address numbers"
@@ -250,11 +265,12 @@
         "detector": "IP Address",
         "covered": true,
         "status": "Covered",
-        "source_text": null,
-        "page": null,
-        "source_excerpt": null
+        "source_text": "Internet Protocol (IP) address numbers",
+        "page": 97,
+        "source_excerpt": "Internet Protocol (IP) address numbers"
     },
     {
+        "regulation": "HIPAA",
         "entity": "Biometric Identifiers",
         "subcategories": [
             "Biometric identifiers"
@@ -263,9 +279,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
+        "source_text": "Biometric identifiers, including finger and voice prints",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "source_excerpt": "Biometric identifiers, including finger and voice prints",
         "suggested_rule": {
             "method": "Specialized biometric detection",
             "pattern": null,
@@ -273,6 +289,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "Full-Face Photographs",
         "subcategories": [
             "Full face photographic images",
@@ -282,9 +299,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
+        "source_text": "Full face photographic images and any comparable images",
         "page": 97,
-        "source_excerpt": "ts of a zip \ncode for all such geographic units \ncontaining 20,000 or fewer people is \nchanged to 000. \n(C) All elements of dates (except \nyear) for dates directly related to an \nindividual, including birth date, \nadmission date, discharge date, date \nof death; and all ages over 89 and all \nelements of dates (including year) \nindicative of such age, except that \nsuch ages and elements may be \naggr",
+        "source_excerpt": "Full face photographic images and any comparable images",
         "suggested_rule": {
             "method": "Image recognition",
             "pattern": null,
@@ -292,6 +309,7 @@
         }
     },
     {
+        "regulation": "HIPAA",
         "entity": "Other Unique Identifiers",
         "subcategories": [
             "Unique identifying numbers"
@@ -300,9 +318,9 @@
         "detector": null,
         "covered": false,
         "status": "Gap",
-        "source_text": null,
-        "page": null,
-        "source_excerpt": null,
+        "source_text": "Any other unique identifying number, characteristic, or code, except as permitted by paragraph (c) of this section",
+        "page": 97,
+        "source_excerpt": "Any other unique identifying number, characteristic, or code, except as permitted by paragraph (c) of this section",
         "suggested_rule": {
             "method": "Manual review",
             "pattern": null,

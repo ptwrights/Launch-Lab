@@ -1,0 +1,132 @@
+[
+    {
+        "regulation": "CCPA",
+        "entity": "Government Identifiers",
+        "subcategories": [
+            "(1)(A) Government Identifiers"
+        ],
+        "regulatory_reference": "11 CCR 7001(bbb)(1)(A)",
+        "detector": "social security number",
+        "covered": false,
+        "status": "Partial Detector Match",
+        "source_text": "A consumer\u2019s social security",
+        "page": 10
+    },
+    {
+        "regulation": "CCPA",
+        "entity": "Financial Accounts and Credentials",
+        "subcategories": [
+            "(1)(B) Financial Accounts and Credentials"
+        ],
+        "regulatory_reference": "11 CCR 7001(bbb)(1)(B)",
+        "detector": "account number",
+        "covered": false,
+        "status": "Partial Detector Match",
+        "source_text": "A consumer\u2019s account log-in",
+        "page": 11
+    },
+    {
+        "regulation": "CCPA",
+        "entity": "Precise Geolocation",
+        "subcategories": [
+            "(1)(C) Precise Geolocation"
+        ],
+        "regulatory_reference": "11 CCR 7001(bbb)(1)(C)",
+        "detector": null,
+        "covered": false,
+        "status": "No Detector Match",
+        "source_text": "A consumer\u2019s precise geolocation",
+        "page": 11
+    },
+    {
+        "regulation": "CCPA",
+        "entity": "Sensitive Personal Characteristics",
+        "subcategories": [
+            "(1)(D) Sensitive Personal Characteristics"
+        ],
+        "regulatory_reference": "11 CCR 7001(bbb)(1)(D)",
+        "detector": null,
+        "covered": false,
+        "status": "No Detector Match",
+        "source_text": "A consumer\u2019s racial or ethnic origin",
+        "page": 11
+    },
+    {
+        "regulation": "CCPA",
+        "entity": "Private Communications",
+        "subcategories": [
+            "(1)(E) Private Communications"
+        ],
+        "regulatory_reference": "11 CCR 7001(bbb)(1)(E)",
+        "detector": null,
+        "covered": false,
+        "status": "No Detector Match",
+        "source_text": "The contents of a consumer\u2019s mail",
+        "page": 11
+    },
+    {
+        "regulation": "CCPA",
+        "entity": "Genetic Data",
+        "subcategories": [
+            "(1)(F) Genetic Data"
+        ],
+        "regulatory_reference": "11 CCR 7001(bbb)(1)(F)",
+        "detector": null,
+        "covered": false,
+        "status": "No Detector Match",
+        "source_text": "A consumer\u2019s genetic data",
+        "page": 11
+    },
+    {
+        "regulation": "CCPA",
+        "entity": "Neural Data",
+        "subcategories": [
+            "(1)(G) Neural Data"
+        ],
+        "regulatory_reference": "11 CCR 7001(bbb)(1)(G)",
+        "detector": null,
+        "covered": false,
+        "status": "No Detector Match",
+        "source_text": "A consumer\u2019s neural data",
+        "page": 11
+    },
+    {
+        "regulation": "CCPA",
+        "entity": "Biometric Identification",
+        "subcategories": [
+            "(2) Biometric Identification"
+        ],
+        "regulatory_reference": "11 CCR 7001(bbb)(2)",
+        "detector": null,
+        "covered": false,
+        "status": "No Detector Match",
+        "source_text": "The processing of biometric information",
+        "page": 11
+    },
+    {
+        "regulation": "CCPA",
+        "entity": "Health and Sexual Information",
+        "subcategories": [
+            "(3) Health and Sexual Information"
+        ],
+        "regulatory_reference": "11 CCR 7001(bbb)(3)",
+        "detector": null,
+        "covered": false,
+        "status": "No Detector Match",
+        "source_text": "Personal information collected and analyzed concerning a consumer\u2019s health",
+        "page": 11
+    },
+    {
+        "regulation": "CCPA",
+        "entity": "Personal Information of Minors",
+        "subcategories": [
+            "(4) Personal Information of Minors"
+        ],
+        "regulatory_reference": "11 CCR 7001(bbb)(4)",
+        "detector": null,
+        "covered": false,
+        "status": "No Detector Match",
+        "source_text": "Personal information of consumers that the business has actual knowledge",
+        "page": 11
+    }
+]

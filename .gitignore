@@ -1,7 +1,21 @@
-
+# Python
 .venv/
 venv/
-.env
 __pycache__/
 *.pyc
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# React / Node.js
+node_modules/
+dist/
+.vite/
+
+# System files
 .DS_Store
+
+# Logs
+*.log
