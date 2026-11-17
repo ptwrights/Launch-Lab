@@ -3,31 +3,58 @@ import json
 import re
 from pathlib import Path
 from functools import lru_cache
+
 from rank_bm25 import BM25Okapi
 
 BASE_DIR = Path(__file__).resolve().parent
 
 REGULATIONS = {
-    "HIPAA": "hipaa_chunks.json",
-    "CCPA": "ccpa_chunks.json"
+    "HIPAA": BASE_DIR / "hipaa_chunks.json",
+    "CCPA": BASE_DIR / "ccpa_chunks.json",
 }
+
+
+def get_chunk_path(regulation):
+    regulation = regulation.upper()
+
+    if regulation in REGULATIONS:
+        return REGULATIONS[regulation]
+
+    # Uploaded documents use 32-character hex IDs
+    document_id = regulation.lower()
+
+    if (
+        len(document_id) == 32
+        and all(c in "0123456789abcdef" for c in document_id)
+    ):
+        return (
+            BASE_DIR
+            / "data"
+            / "chunks"
+            / f"{document_id}_chunks.json"
+        )
+
+    raise ValueError("Unsupported regulation or document ID.")
 
 
 def tokenize(text):
     return re.findall(r"\w+", text.lower())
 
 
-@lru_cache(maxsize=2)
+@lru_cache(maxsize=16)
 def load_bm25(regulation):
-    regulation = regulation.upper()
+    file_path = get_chunk_path(regulation)
 
-    if regulation not in REGULATIONS:
-        raise ValueError("Unsupported regulation: " + regulation)
-
-    file_path = BASE_DIR / REGULATIONS[regulation]
+    if not file_path.exists():
+        raise FileNotFoundError(
+            f"Chunk file not found: {file_path}"
+        )
 
     with open(file_path, "r", encoding="utf-8") as file:
         chunks = json.load(file)
+
+    if not chunks:
+        raise ValueError("Document has no chunks.")
 
     tokenized_chunks = [
         tokenize(chunk["text"])
@@ -65,16 +92,13 @@ def search_bm25(query, top_k=3, regulation="HIPAA"):
 
 
 if __name__ == "__main__":
-    question = "What information counts as personal information?"
-
     results = search_bm25(
-        question,
+        "What information is protected?",
         top_k=5,
         regulation="CCPA"
     )
 
     for result in results:
-        print("\nPage:", result["page"])
-        print("Score:", round(result["score"], 2))
-        print("Text:", result["text"][:400])
+        print(result["page"], result["text"][:200])
+
 

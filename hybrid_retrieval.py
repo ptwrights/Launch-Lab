@@ -5,9 +5,10 @@ from dense_retrieval import search_dense
 
 def hybrid_search(query, top_k=3, regulation="HIPAA"):
 
+    # Existing regulations and uploaded IDs
+    # are both supported
     regulation = regulation.upper()
 
-    # Search the selected regulation
     bm25_results = search_bm25(
         query,
         top_k=10,
@@ -35,7 +36,7 @@ def hybrid_search(query, top_k=3, regulation="HIPAA"):
             "score": 1 / (k + rank)
         }
 
-    # Add FAISS rankings
+    # Combine FAISS rankings
     for rank, result in enumerate(dense_results, start=1):
 
         chunk_id = result["chunk_id"]
@@ -63,9 +64,8 @@ def hybrid_search(query, top_k=3, regulation="HIPAA"):
 if __name__ == "__main__":
 
     question = (
-        "What categories of personal information "
-        "are defined under the California Consumer "
-        "Privacy Act?"
+        "What types of personal information "
+        "are protected by this regulation?"
     )
 
     results = hybrid_search(
@@ -75,9 +75,7 @@ if __name__ == "__main__":
     )
 
     for rank, result in enumerate(results, start=1):
-
         print("\nRank:", rank)
-        print("Chunk ID:", result["chunk_id"])
         print("Page:", result["page"])
         print("Text:", result["text"][:400])
         print("-" * 40)
