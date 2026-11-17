@@ -39,6 +39,7 @@ import {
   Search,
   Security,
   Visibility,
+  UploadFile,
 } from "@mui/icons-material";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -76,6 +77,7 @@ const theme = createTheme({
 });
 
 type Regulation = "hipaa" | "ccpa";
+type Source = Regulation | "uploaded";
 
 type Page =
   | "Dashboard"
@@ -126,12 +128,21 @@ const statusInfo = {
 function App() {
   const [page, setPage] = useState<Page>("Dashboard");
   const [regulation, setRegulation] = useState<Regulation>("hipaa");
+  const [source, setSource] = useState<Source>("hipaa");
+  const [uploadedId, setUploadedId] = useState("");
+  const [uploadedName, setUploadedName] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [uploadReady, setUploadReady] = useState(false);
+  const uploadInput = useRef<HTMLInputElement | null>(null);
+  const sourceLabel = source === "uploaded" ? (uploadedName || "Uploaded PDF") : source.toUpperCase();
+
 
   const [results, setResults] =
     useState<AnalysisResults | null>(null);
 
   const [loading, setLoading] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
+  const busy = loading || analyzing || uploading;
   const [analysisComplete, setAnalysisComplete] = useState(false);
 
   const [error, setError] = useState("");
@@ -156,16 +167,21 @@ function App() {
       setFilter("all");
       setSelected(null);
 
+      if (source === "uploaded" && !uploadedId) {
+        setLoading(false);
+        return;
+      }
+
       try {
-        const response = await fetch(
-          `${API_URL}/results/${regulation}`,
-          { signal: controller.signal }
-        );
+        const endpoint = source === "uploaded"
+          ? `${API_URL}/results-upload/${uploadedId}`
+          : `${API_URL}/results/${source}`;
+        const response = await fetch(endpoint, { signal: controller.signal });
 
         if (!response.ok) {
-          throw new Error(
-            `Could not load results (${response.status})`
-          );
+          // A newly uploaded PDF has no saved report until it is analyzed.
+          if (source === "uploaded" && response.status === 404) return;
+          throw new Error(`Could not load results (${response.status})`);
         }
 
         const data: unknown = await response.json();
@@ -195,7 +211,7 @@ function App() {
     loadResults();
 
     return () => controller.abort();
-  }, [regulation]);
+  }, [source, uploadedId]);
 
   // Run real analysis through FastAPI
   async function handleRunAnalysis() {
@@ -208,10 +224,13 @@ function App() {
     setSelected(null);
 
     try {
-      const response = await fetch(
-        `${API_URL}/analyze/${regulation}`,
-        { method: "POST" }
-      );
+      if (source === "uploaded" && !uploadedId) {
+        throw new Error("Upload a PDF before running analysis.");
+      }
+      const endpoint = source === "uploaded"
+        ? `${API_URL}/analyze-upload/${uploadedId}`
+        : `${API_URL}/analyze/${source}`;
+      const response = await fetch(endpoint, { method: "POST" });
 
       if (!response.ok) {
         const details = await response.json().catch(() => null);
@@ -239,6 +258,55 @@ function App() {
     }
   }
 
+  // Upload a PDF, then allow the user to run the real AI analysis.
+  async function handleUpload(file: File | undefined) {
+    if (!file) return;
+    if (!file.name.toLowerCase().endsWith(".pdf")) {
+      setError("Please choose a PDF file.");
+      return;
+    }
+    if (file.size > 20 * 1024 * 1024) {
+      setError("PDF must be 20 MB or smaller.");
+      return;
+    }
+
+    setUploading(true);
+    setError("");
+    setAnalysisComplete(false);
+    setResults(null);
+    setUploadedId("");
+    setUploadReady(false);
+    setSource("uploaded");
+    setSelected(null);
+    setSearch("");
+    setFilter("all");
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const response = await fetch(`${API_URL}/upload-regulation`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.detail || `Upload failed (${response.status})`);
+      }
+      if (typeof data.document_id !== "string") {
+        throw new Error("Upload returned no document ID.");
+      }
+      setUploadedName(file.name);
+      setUploadedId(data.document_id);
+      setUploadReady(true);
+      setPage("Regulations");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed.");
+    } finally {
+      setUploading(false);
+      if (uploadInput.current) uploadInput.current.value = "";
+    }
+  }
+
   // Live metrics
   const total = results?.length ?? 0;
 
@@ -250,6 +318,7 @@ function App() {
 
   const unmatched = total - full - partial;
   const gaps = total - full;
+  const uploadedMode = source === "uploaded";
 
   const matchRate = total
     ? Math.round((full / total) * 100)
@@ -272,7 +341,7 @@ function App() {
       icon: <Security />,
     },
     {
-      label: "Full Match Rate",
+      label: uploadedMode ? "Detector Match Rate" : "Full Match Rate",
       value: `${matchRate}%`,
       icon: <AutoAwesome />,
     },
@@ -280,7 +349,7 @@ function App() {
 
   const chartData = [
     {
-      name: "Full Match",
+      name: uploadedMode ? "Detector Match" : "Full Match",
       value: full,
       color: "#64D6A0",
     },
@@ -290,7 +359,7 @@ function App() {
       color: "#F5BD65",
     },
     {
-      name: "Unmatched",
+      name: uploadedMode ? "No Detector Match" : "Unmatched",
       value: unmatched,
       color: "#F08080",
     },
@@ -329,7 +398,8 @@ function App() {
 
     const report = {
       report_name: "GapGuard AI Detector Coverage Report",
-      regulation: regulation.toUpperCase(),
+      regulation: sourceLabel,
+      document_id: uploadedMode ? uploadedId : undefined,
       exported_at: new Date().toISOString(),
       summary: {
         total_sensitive_entities: total,
@@ -355,7 +425,7 @@ function App() {
     const link = document.createElement("a");
 
     link.href = url;
-    link.download = `gapguard_${regulation}_report.json`;
+    link.download = `gapguard_${uploadedMode ? uploadedId : regulation}_report.json`;
 
     document.body.appendChild(link);
     link.click();
@@ -382,24 +452,45 @@ function App() {
             Regulation Analysis
           </Typography>
           <Typography color="text.secondary" sx={{ fontSize: 14 }}>
-            Select a regulation, run analysis, or export the results.
+            Select a regulation or upload a PDF, then analyze and export results.
           </Typography>
         </Box>
 
         <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
           <FormControl size="small">
             <Select
-              value={regulation}
-              disabled={loading || analyzing}
-              onChange={(event) =>
-                setRegulation(event.target.value as Regulation)
-              }
+              value={source}
+              disabled={busy}
+              onChange={(event) => {
+                const value = event.target.value as Source;
+                setSource(value);
+                if (value !== "uploaded") setRegulation(value);
+              }}
               sx={{ minWidth: 120 }}
             >
               <MenuItem value="hipaa">HIPAA</MenuItem>
               <MenuItem value="ccpa">CCPA</MenuItem>
+             {uploadedId ? (
+  <MenuItem value="uploaded">Uploaded PDF</MenuItem>
+) : null}
             </Select>
           </FormControl>
+
+          <input
+            ref={uploadInput}
+            type="file"
+            accept=".pdf,application/pdf"
+            style={{ display: "none" }}
+            onChange={(event) => void handleUpload(event.target.files?.[0])}
+          />
+          <Button
+            variant="outlined"
+            startIcon={uploading ? <CircularProgress size={17} /> : <UploadFile />}
+            disabled={busy}
+            onClick={() => uploadInput.current?.click()}
+          >
+            {uploading ? "Uploading..." : "Upload PDF"}
+          </Button>
 
           <Button
             variant="contained"
@@ -410,7 +501,7 @@ function App() {
                 <PlayArrow />
               )
             }
-            disabled={loading || analyzing}
+            disabled={busy || (uploadedMode && !uploadedId)}
             onClick={handleRunAnalysis}
           >
             {analyzing ? "Analyzing..." : "Run Analysis"}
@@ -420,7 +511,7 @@ function App() {
             variant="outlined"
             startIcon={<Download />}
             onClick={handleExportReport}
-            disabled={!results || loading || analyzing}
+            disabled={!results || busy}
           >
             Export Report
           </Button>
@@ -438,7 +529,7 @@ function App() {
         </Typography>
 
         <Typography color="text.secondary" sx={{ fontSize: 14 }}>
-          Current {regulation.toUpperCase()} detector mapping results.
+          Current {sourceLabel} detector mapping results. {uploadedMode && "Matches are candidate detector capabilities, not full regulatory coverage."}
         </Typography>
 
         {results && total > 0 ? (
@@ -531,7 +622,11 @@ function App() {
 
             <TableBody>
               {filteredResults.map((item, index) => {
-                const info = statusInfo[getStatus(item)];
+                 const info = uploadedMode && item.covered
+                   ? { label: "Detector Match", color: "#64D6A0" }
+                   : uploadedMode
+                   ? { label: "No Detector Match", color: "#F08080" }
+                   : statusInfo[getStatus(item)];
 
                 return (
                   <TableRow
@@ -677,7 +772,7 @@ function App() {
 
           {analyzing && (
             <Alert severity="info" sx={{ mb: 3 }}>
-              GapGuard AI is analyzing {regulation.toUpperCase()}.
+              GapGuard AI is analyzing {sourceLabel}.
               This may take a few minutes.
               <LinearProgress sx={{ mt: 2 }} />
             </Alert>
@@ -686,7 +781,13 @@ function App() {
           {analysisComplete && !analyzing && (
             <Alert severity="success" sx={{ mb: 3 }}>
               AI analysis completed successfully.
-              Your {regulation.toUpperCase()} results have been refreshed.
+              Your {sourceLabel} results have been refreshed.
+            </Alert>
+          )}
+
+          {uploadReady && uploadedMode && !analyzing && !analysisComplete && !results && !error && (
+            <Alert severity="success" sx={{ mb: 3 }}>
+              {uploadedName} uploaded successfully. Click Run Analysis to analyze its contents.
             </Alert>
           )}
 
@@ -763,6 +864,20 @@ function App() {
                   Available Regulations
                 </Typography>
 
+                <Box sx={{ mb: 3, p: 2, border: "1px solid #244334", borderRadius: 2 }}>
+                  <Typography variant="h6" sx={{ mb: 1 }}>Upload a Regulation</Typography>
+                  <Typography color="text.secondary" sx={{ mb: 2 }}>
+                    Upload a text-based PDF (up to 20 MB) and analyze its sensitive data categories using Ollama and hybrid retrieval.
+                  </Typography>
+                  <Button variant="outlined" startIcon={<UploadFile />} disabled={busy}
+                    onClick={() => uploadInput.current?.click()}>
+                    Choose PDF
+                  </Button>
+                  {uploadedId && <Typography sx={{ mt: 2 }} color="text.secondary">
+                    Uploaded: {uploadedName} — {uploadedMode ? "Selected" : "Available in selector"}
+                  </Typography>}
+                </Box>
+
                 {(["hipaa", "ccpa"] as Regulation[]).map((item) => (
                   <Box
                     key={item}
@@ -794,11 +909,11 @@ function App() {
                     </Box>
 
                     <Button
-                      variant={regulation === item ? "contained" : "outlined"}
-                      disabled={loading || analyzing}
-                      onClick={() => setRegulation(item)}
+                      variant={source === item ? "contained" : "outlined"}
+                      disabled={busy}
+                      onClick={() => { setRegulation(item); setSource(item); }}
                     >
-                      {regulation === item ? "Selected" : "Select"}
+                      {source === item ? "Selected" : "Select"}
                     </Button>
                   </Box>
                 ))}
@@ -829,14 +944,14 @@ function App() {
                   {results ? (
                     <>
                       <Typography color="text.secondary" sx={{ mb: 2 }}>
-                        {regulation.toUpperCase()} analysis identified{" "}
+                        {sourceLabel} analysis identified{" "}
                         <strong>{gaps} potential gaps</strong> across{" "}
                         {total} sensitive entities.
                       </Typography>
 
                       <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
                         <Chip
-                          label={`${full} Full Matches`}
+                          label={`${full} ${uploadedMode ? "Detector Matches" : "Full Matches"}`}
                           color="success"
                           variant="outlined"
                         />
@@ -894,7 +1009,7 @@ function App() {
                         </Typography>
 
                         <Chip
-                          label={statusInfo[status].label}
+                          label={uploadedMode ? "No Detector Match" : statusInfo[status].label}
                           size="small"
                           sx={{
                             color: statusInfo[status].color,
@@ -957,7 +1072,9 @@ function App() {
 
                 <DialogContent dividers>
                   <Chip
-                    label={statusInfo[getStatus(selected)].label}
+                    label={uploadedMode
+                      ? (selected.covered ? "Detector Match" : "No Detector Match")
+                      : statusInfo[getStatus(selected)].label}
                     variant="outlined"
                     sx={{
                       color: statusInfo[getStatus(selected)].color,

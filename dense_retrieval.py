@@ -7,32 +7,30 @@ import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-BASE_DIR = Path(__file__).resolve().parent
+from retrieval import get_chunk_path
 
-REGULATIONS = {
-    "HIPAA": "hipaa_chunks.json",
-    "CCPA": "ccpa_chunks.json"
-}
-
-# Load the model once
+# Load the embedding model once
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
-@lru_cache(maxsize=2)
+@lru_cache(maxsize=16)
 def load_dense_index(regulation):
-    regulation = regulation.upper()
+    file_path = get_chunk_path(regulation)
 
-    if regulation not in REGULATIONS:
-        raise ValueError("Unsupported regulation: " + regulation)
-
-    file_path = BASE_DIR / REGULATIONS[regulation]
+    if not file_path.exists():
+        raise FileNotFoundError(
+            f"Chunk file not found: {file_path}"
+        )
 
     with open(file_path, "r", encoding="utf-8") as file:
         chunks = json.load(file)
 
+    if not chunks:
+        raise ValueError("Document has no chunks.")
+
     texts = [chunk["text"] for chunk in chunks]
 
-    print(f"Creating {regulation} embeddings...")
+    print(f"Creating embeddings for {regulation}...")
 
     embeddings = model.encode(
         texts,
@@ -89,17 +87,14 @@ def search_dense(query, top_k=3, regulation="HIPAA"):
 
 
 if __name__ == "__main__":
-    question = "What types of personal information are protected?"
-
     results = search_dense(
-        question,
+        "What personal information is protected?",
         top_k=5,
         regulation="CCPA"
     )
 
     for result in results:
-        print("\nPage:", result["page"])
-        print("Similarity:", round(result["score"], 3))
-        print("Text:", result["text"][:400])
+        print(result["page"], result["text"][:200])
+
 
 
